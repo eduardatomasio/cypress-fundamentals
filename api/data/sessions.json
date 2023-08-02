@@ -3630,6 +3630,20 @@
       "level": "Intermediate",
       "day": "Thursday",
       "id": "814b1f5e-e6df-440b-a91c-df198b5bbed2"
+    },
+    {
+      "title": "Title",
+      "description": "oi",
+      "level": "basico",
+      "day": "sexta",
+      "id": "4fb85fb2-96b8-42dd-aee4-157331976763"
+    },
+    {
+      "title": "New session title",
+      "description": "New session description",
+      "level": "Basic",
+      "day": "Friday",
+      "id": "219c577a-13b3-4560-a9a8-b53c66c2ca35"
     }
   ]
 }
