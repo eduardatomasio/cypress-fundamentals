@@ -3644,6 +3644,13 @@
       "level": "Basic",
       "day": "Friday",
       "id": "219c577a-13b3-4560-a9a8-b53c66c2ca35"
+    },
+    {
+      "title": "New session title",
+      "description": "New session description",
+      "level": "Basic",
+      "day": "Friday",
+      "id": "d3fd4c13-4868-4860-8c2f-bc4fa8f5fe82"
     }
   ]
 }

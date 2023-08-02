@@ -11,6 +11,14 @@ describe("Sessions page", () => {
         cy.get("[data-cy=Wednesday]");
         cy.get("[data-cy=Thursday]");
         cy.get("[data-cy=Friday]");
+    });
 
+    it("should filter sessions and only display wednesday sessions when Wednesday button is clicked", () => {
+        cy.get("[data-cy=Wednesday]").click();
+
+        // Assertions
+        cy.get("[data-cy=day]").contains("Wednesday").should("be.visible");
+        cy.get("[data-cy=day]").contains("Thursday").should("not.exist");
+        cy.get("[data-cy=day]").contains("Friday").should("not.exist");   
     });
 } );
