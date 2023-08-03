@@ -23,7 +23,9 @@ describe("Sessions page", () => {
     });
 
     it("should filter sessions and only display wednesday sessions when Wednesday button is clicked", () => {
+        cy.intercept("POST", "http://localhost:4000/graphql").as("getSessionsInfo");
         cy.get("@WednesdayBtn").click();
+        cy.wait("@getSessionsInfo")
 
         // Assertions
         cy.get("[data-cy=day]").contains("Wednesday").should("be.visible");
@@ -32,7 +34,9 @@ describe("Sessions page", () => {
     });
 
     it("should filter sessions and only display thursday sessions when Thursday button is clicked", () => {
+        cy.intercept("POST", "http://localhost:4000/graphql").as("getSessionsInfo");
         cy.get("@ThursdayBtn").click();
+        cy.wait("@getSessionsInfo")
 
         // Assertions
         cy.get("[data-cy=day]").contains("Wednesday").should("not.exist");
@@ -41,11 +45,24 @@ describe("Sessions page", () => {
     });
 
     it("should filter sessions and only display friday sessions when Friday button is clicked", () => {
+        cy.intercept("POST", "http://localhost:4000/graphql").as("getSessionsInfo");
         cy.get("@FridayBtn").click();
+        cy.wait("@getSessionsInfo")
 
         // Assertions
         cy.get("[data-cy=day]").contains("Wednesday").should("not.exist");
         cy.get("[data-cy=day]").contains("Thursday").should("not.exist");
+        cy.get("[data-cy=day]").contains("Friday").should("be.visible");   
+    });
+
+    it("should filter sessions and display all sessions when All Sessions button is clicked", () => {
+        cy.intercept("POST", "http://localhost:4000/graphql").as("getSessionsInfo");
+        cy.get("@AllSessionsBtn").click();
+        cy.wait("@getSessionsInfo")
+
+        // Assertions
+        cy.get("[data-cy=day]").contains("Wednesday").should("be.visible");
+        cy.get("[data-cy=day]").contains("Thursday").should("be.visible");
         cy.get("[data-cy=day]").contains("Friday").should("be.visible");   
     });
 } );
