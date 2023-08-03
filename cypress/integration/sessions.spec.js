@@ -2,15 +2,13 @@
 
 describe("Sessions page", () => {
     beforeEach(() => {
-        cy.visit("/conference");
-        cy.get("h1").contains("View Sessions").click();
-        cy.url().should("include", "/sessions");
+       cy.clickViewSessions();
 
         // Aliases
-        cy.get("[data-cy=AllSessions]").as("AllSessionsBtn");
-        cy.get("[data-cy=Wednesday]").as("WednesdayBtn");;
-        cy.get("[data-cy=Thursday]").as("ThursdayBtn");;
-        cy.get("[data-cy=Friday]").as("FridayBtn");;
+        cy.dataCy("AllSessions").as("AllSessionsBtn");
+        cy.dataCy("Wednesday").as("WednesdayBtn");;
+        cy.dataCy("Thursday").as("ThursdayBtn");;
+        cy.dataCy("Friday").as("FridayBtn");;
 
     });
 
@@ -22,15 +20,26 @@ describe("Sessions page", () => {
         cy.get("@FridayBtn");
     });
     
+    /*it("should filter sessions and only display wednesday sessions when Wednesday button is clicked", () => {
+        cy.intercept("POST", "http://localhost:4000/graphql").as("getSessionsInfo");
+        cy.get("@WednesdayBtn").click();
+        cy.wait("@getSessionsInfo")
+
+        // Assertions
+        cy.get("[data-cy=day]").contains("Wednesday").should("be.visible");
+        cy.get("[data-cy=day]").contains("Thursday").should("not.exist");
+        cy.get("[data-cy=day]").contains("Friday").should("not.exist");   
+    });*/
+
     it("should filter sessions and only display thursday sessions when Thursday button is clicked", () => {
         cy.intercept("POST", "http://localhost:4000/graphql").as("getSessionsInfo");
         cy.get("@ThursdayBtn").click();
         cy.wait("@getSessionsInfo")
 
         // Assertions
-        cy.get("[data-cy=day]").contains("Wednesday").should("not.exist");
-        cy.get("[data-cy=day]").contains("Thursday").should("be.visible");
-        cy.get("[data-cy=day]").contains("Friday").should("not.exist");   
+        cy.dataCy("day").contains("Wednesday").should("not.exist");
+        cy.dataCy("day").contains("Thursday").should("be.visible");
+        cy.dataCy("day").contains("Friday").should("not.exist");   
     });
 
     it("should filter sessions and only display friday sessions when Friday button is clicked", () => {
@@ -39,10 +48,10 @@ describe("Sessions page", () => {
         cy.wait("@getSessionsInfo")
 
         // Assertions
-        cy.get("[data-cy=day]").should("have.length", 4);
-        cy.get("[data-cy=day]").contains("Wednesday").should("not.exist");
-        cy.get("[data-cy=day]").contains("Thursday").should("not.exist");
-        cy.get("[data-cy=day]").contains("Friday").should("be.visible");   
+        cy.dataCy("day").should("have.length", 4);
+        cy.dataCy("day").contains("Wednesday").should("not.exist");
+        cy.dataCy("day").contains("Thursday").should("not.exist");
+        cy.dataCy("day").contains("Friday").should("be.visible");   
     });
 
     it("should filter sessions and display all sessions when All Sessions button is clicked", () => {
@@ -51,8 +60,8 @@ describe("Sessions page", () => {
         cy.wait("@getSessionsInfo")
 
         // Assertions
-        cy.get("[data-cy=day]").contains("Wednesday").should("be.visible");
-        cy.get("[data-cy=day]").contains("Thursday").should("be.visible");
-        cy.get("[data-cy=day]").contains("Friday").should("be.visible");   
+        cy.dataCy("day").contains("Wednesday").should("be.visible");
+        cy.dataCy("day").contains("Thursday").should("be.visible");
+        cy.dataCy("day").contains("Friday").should("be.visible");  
     });
 } );

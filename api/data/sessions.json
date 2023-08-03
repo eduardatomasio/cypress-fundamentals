@@ -3651,6 +3651,20 @@
       "level": "Basic",
       "day": "Friday",
       "id": "d3fd4c13-4868-4860-8c2f-bc4fa8f5fe82"
+    },
+    {
+      "title": "New session title",
+      "description": "New session description",
+      "level": "Basic",
+      "day": "Friday",
+      "id": "deb8b725-ed41-4db4-8fe8-91defc44e76d"
+    },
+    {
+      "title": "New session title",
+      "description": "New session description",
+      "level": "Basic",
+      "day": "Friday",
+      "id": "5ae2e32c-3e30-47ff-8f5e-c1a8167a0a40"
     }
   ]
 }
